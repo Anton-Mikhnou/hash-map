@@ -1,0 +1,1 @@
+(()=>{"use strict";let t=new class{constructor(t,e){this.key=t,this.value=e}hash(t){let e=0;for(let s=0;s<t.length;s++)e=(31*e+t.charCodeAt(s))%16;return e}set(t,e){}};console.log(t.hash("Mano"))})();
