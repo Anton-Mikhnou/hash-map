@@ -1,9 +1,8 @@
 import Node from './node';
 
 export default class HashMap {
-    constructor(key, value) {
-        this.key = key;
-        this.value = value;
+    constructor() {
+       this.buckets = new Array(16)
     }
 
     hash(key) {
@@ -11,13 +10,26 @@ export default class HashMap {
       
         const primeNumber = 31;
         for (let i = 0; i < key.length; i++) {
-            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % 16;
+            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.buckets.length;
         }
 
         return hashCode;
     }
 
     set(key, value) {
-        
+        let index = this.hash(key);
+
+        if (this.buckets[index] !== '' && this.buckets[index] === value) {
+            this.buckets[index] = value;
+        } else {
+            
+            this.buckets[index] = value;
+        }
+
+    }
+
+    value(index) {
+        console.log(this.buckets[index]);
+        console.log(this.buckets);
     }
 }
