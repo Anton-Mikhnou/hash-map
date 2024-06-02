@@ -20,6 +20,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./modules/linkedList.js":
+/*!*******************************!*\
+  !*** ./modules/linkedList.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ LinkedList)\n/* harmony export */ });\n/* harmony import */ var _node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node */ \"./modules/node.js\");\n\r\n\r\nclass LinkedList {\r\n    constructor(head = null, tail = null) {\r\n        this.head = head;\r\n        this.tail = tail;\r\n    }\r\n\r\n    #setIndex() {\r\n        let temp = this.head;\r\n        let number = 0;\r\n        while(temp !== null) {\r\n            temp.index = number;\r\n            number++;\r\n            temp = temp.next;\r\n        }\r\n    }\r\n\r\n    append(value) {\r\n        const node = new _node__WEBPACK_IMPORTED_MODULE_0__[\"default\"](value);\r\n\r\n        if(!this.head || !this.tail) {\r\n\r\n            this.head = node;\r\n            this.tail = node;\r\n            return this;\r\n\r\n        } else {\r\n\r\n            this.tail.next = node;\r\n            this.tail = node;\r\n            this.#setIndex()\r\n            return this;\r\n        }\r\n    }\r\n\r\n    prepend(value) {\r\n        const node = new _node__WEBPACK_IMPORTED_MODULE_0__[\"default\"](value);\r\n\r\n        if(!this.head || !this.tail) {\r\n\r\n            this.head = node;\r\n            this.tail = node;\r\n            return this;\r\n\r\n        } else {\r\n            const before = this.head;\r\n            this.head = node;\r\n            this.head.next = before;\r\n\r\n            this.#setIndex()\r\n            return this;\r\n\r\n        }\r\n    }\r\n\r\n    size() {\r\n        let temp = this.head;\r\n        let number = 0;\r\n        while(temp !== null) {\r\n            temp.index = number;\r\n            number++;\r\n            temp = temp.next;\r\n        }\r\n        return number;\r\n    }\r\n\r\n    \r\n\r\n\r\n}\r\n\r\n\n\n//# sourceURL=webpack://hash-map/./modules/linkedList.js?");
+
+/***/ }),
+
 /***/ "./modules/node.js":
 /*!*************************!*\
   !*** ./modules/node.js ***!
@@ -36,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_hash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/hash */ \"./modules/hash.js\");\n\r\n\r\nlet hashMap = new _modules_hash__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\n\r\nconsole.log(hashMap.set('Car', 'fsdf'));\r\n\r\nhashMap.value(4);\r\n\r\nconsole.log(hashMap.set('Car', 'trtr'));\r\n\r\nhashMap.value(4);\r\n\r\nhashMap.set('Mano', 'Farci')\r\n\r\nhashMap.value(5)\r\n\r\nhashMap.set('Mano', 'tff')\r\n\r\nhashMap.value(5)\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://hash-map/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_hash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/hash */ \"./modules/hash.js\");\n/* harmony import */ var _modules_linkedList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/linkedList */ \"./modules/linkedList.js\");\n\r\n\r\n\r\nlet hashMap = new _modules_hash__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\n\r\nconsole.log(hashMap.set('Car', 'fsdf'));\r\n\r\nhashMap.value(4);\r\n\r\nconsole.log(hashMap.set('Car', 'trtr'));\r\n\r\nhashMap.value(4);\r\n\r\nhashMap.set('Mano', 'Farci')\r\n\r\nhashMap.value(5)\r\n\r\nhashMap.set('Mano', 'tff')\r\n\r\nhashMap.value(5)\r\n\r\nlet list = new _modules_linkedList__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\r\nconsole.log(list.append('sd'))\r\nconsole.log(list.append('tr'))\r\nconsole.log(list.prepend('re'))\r\n\r\nconsole.log(list.size());\r\n\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://hash-map/./src/index.js?");
 
 /***/ })
 

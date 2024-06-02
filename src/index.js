@@ -1,4 +1,5 @@
 import HashMap from '../modules/hash';
+import LinkedList from '../modules/linkedList';
 
 let hashMap = new HashMap();
 
@@ -17,6 +18,14 @@ hashMap.value(5)
 hashMap.set('Mano', 'tff')
 
 hashMap.value(5)
+
+let list = new LinkedList();
+console.log(list.append('sd'))
+console.log(list.append('tr'))
+console.log(list.prepend('re'))
+
+console.log(list.size());
+
 
 
 
