@@ -1,3 +1,4 @@
+import { createHtmlTagObject } from "html-webpack-plugin";
 import Node from "./node";
 
 export default class LinkedList {
@@ -62,11 +63,67 @@ export default class LinkedList {
             number++;
             temp = temp.next;
         }
+
         return number;
     }
 
-    
+    getHead() {
+        return this.head;
+    }
+
+    getTail() {
+        return this.tail;
+    }
+
+    at(indexs) {
+        let temp = this.head;
+        let number = 0;
+        while(temp !== null) {
+            if(temp.index === indexs) {
+                return temp;
+            } else {
+                temp.index = number;
+                number++;
+                temp = temp.next;
+            }
+        }
+    }
+
+    pop() {
+
+        if (this.head === null) {
+
+            return undefined;
+
+        } else if (this.head.next === null ) {
+
+            this.head = null;
+            this.tail = null;
+            return undefined;
+
+        } else {
+
+            let temp = this.head;
+            let number = 0;
+
+            while(temp.next !== this.tail) {
+                temp.index = number;
+                number++;
+                temp = temp.next;
+            }
+
+            this.tail = temp;
+            temp.next = null;
+        }
+        
+        this.#setIndex();
+    }
+
+    contains(value) {
+        
+    }
+
+
 
 
 }
-

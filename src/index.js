@@ -20,12 +20,23 @@ hashMap.set('Mano', 'tff')
 hashMap.value(5)
 
 let list = new LinkedList();
-console.log(list.append('sd'))
-console.log(list.append('tr'))
-console.log(list.prepend('re'))
+
+console.log(list.append('sd'));
+// console.log(list.append('tr'));
+// console.log(list.prepend('re'));
 
 console.log(list.size());
 
+console.log('head',list.getHead());
+console.log('tail',list.getTail());
+// console.log(list.at(1));
+console.log('list1', list);
 
+// console.log('pop',list.pop())
 
+console.log('list', list);
 
+// list.append('pp');
+// list.append('rr')
+list.pop()
+console.log('list', list);
