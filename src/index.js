@@ -40,8 +40,9 @@ console.log('list', list);
 
 // list.append('pp');
 // list.append('rr')
-list.pop()
-list.pop()
+// list.pop()
+// list.pop()
 
 console.log('list', list);
 console.log('contains', list.contains('tr'));
+// console.log('find', list.find(''));

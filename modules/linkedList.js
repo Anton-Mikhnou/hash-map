@@ -145,6 +145,47 @@ export default class LinkedList {
         }
     }
 
-    
+    find(value) {
 
+        if(this.head === null) {
+
+            return undefined;
+
+        } else {
+            let temp = this.head;
+            let number = 0;
+
+            while(temp !== null) {
+                if(temp.data === value) {
+
+                    return temp.index;
+
+                } else { 
+
+                    temp.index = number;
+                    number++;
+                    temp = temp.next;
+
+                }
+            }
+        }
+    }
+
+    toString() {
+        let temp = this.head;
+        if(this.head === null) {
+            return null;
+        }
+
+        let result = '';
+
+        while(temp !== null) {
+            result += `(${temp.data}) -> `;
+            if(temp.next === null) {
+                result += 'null';
+            }
+            temp = temp.next;
+        }
+        return result;
+    }
 }
