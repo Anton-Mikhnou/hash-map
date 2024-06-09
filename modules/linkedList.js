@@ -119,11 +119,32 @@ export default class LinkedList {
         this.#setIndex();
     }
 
-    contains(value) {
-        
+    contains(value) {  
+
+        if(this.head === null) {
+
+            return undefined;
+
+        } else {
+            let temp = this.head;
+            let number = 0;
+
+            while(temp !== null) {
+                if(temp.data === value) {
+
+                    return true;
+
+                } else { 
+
+                    temp.index = number;
+                    number++;
+                    temp = temp.next;
+
+                }
+            }
+        }
     }
 
-
-
+    
 
 }

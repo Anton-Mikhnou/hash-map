@@ -18,19 +18,21 @@ hashMap.value(5)
 hashMap.set('Mano', 'tff')
 
 hashMap.value(5)
-
+console.log('===============');
 let list = new LinkedList();
 
 console.log(list.append('sd'));
-// console.log(list.append('tr'));
+console.log(list.append('tr'));
 // console.log(list.prepend('re'));
 
 console.log(list.size());
+console.log('list', list);
 
-console.log('head',list.getHead());
-console.log('tail',list.getTail());
+
+// console.log('head',list.getHead());
+// console.log('tail',list.getTail());
 // console.log(list.at(1));
-console.log('list1', list);
+// console.log('list1', list);
 
 // console.log('pop',list.pop())
 
@@ -39,4 +41,7 @@ console.log('list', list);
 // list.append('pp');
 // list.append('rr')
 list.pop()
+list.pop()
+
 console.log('list', list);
+console.log('contains', list.contains('tr'));
