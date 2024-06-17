@@ -7,9 +7,33 @@ let hashMap = new HashMap();
 
 // hashMap.value('hh',4);
 
-console.log(hashMap.set('Car', 'trtr'));
+console.log(hashMap.set('Car', 'bmw'));
+
+console.log(hashMap.set('Car', 'brr'));
+// console.log(hashMap.set('Car', 'brr'));
+
+console.log(hashMap.set('Ca', 'df'));
+
+// console.log(hashMap.set('Anton', 'Mikhnou'))
 
 hashMap.value(4);
+
+console.log('get:', hashMap.get('Car'));
+console.log('has:', hashMap.has('Car'))
+// console.log('remove:', hashMap.remove('Car'))
+console.log('lenght:', hashMap.length());
+// console.log('clear:', hashMap.clear());
+console.log('keys:', hashMap.keys());
+console.log('values:', hashMap.values());
+console.log('entrise:', hashMap.entrise());
+
+
+
+// console.log(hashMap.set('Car', 'bmw'));
+
+
+
+
 
 // hashMap.set('Mano', 'Farci')
 
@@ -18,31 +42,3 @@ hashMap.value(4);
 // hashMap.set('Mano', 'tff')
 
 // hashMap.value(5)
-// console.log('===============');
-// let list = new LinkedList();
-
-// console.log(list.append('sd'));
-// console.log(list.append('tr'));
-// // console.log(list.prepend('re'));
-
-// console.log(list.size());
-// console.log('list', list);
-
-
-// // console.log('head',list.getHead());
-// // console.log('tail',list.getTail());
-// // console.log(list.at(1));
-// // console.log('list1', list);
-
-// // console.log('pop',list.pop())
-
-// console.log('list', list);
-
-// // list.append('pp');
-// // list.append('rr')
-// // list.pop()
-// // list.pop()
-
-// console.log('list', list);
-// console.log('contains', list.contains('tr'));
-// console.log('find', list.find(''));
