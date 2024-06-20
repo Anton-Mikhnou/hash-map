@@ -2,9 +2,11 @@ import { log } from 'util';
 import LinkedList from './linkedList';
 
 export default class HashMap {
+    numIntems = 0;
 
     constructor(size) {
-       this.buckets = new Array(size)
+        this.size = size;
+        this.buckets = new Array(size)
     }
 
     #hash (key) {
@@ -20,41 +22,61 @@ export default class HashMap {
         return hashCode;
     }
 
-    // #growingBuckets () {
-    //     const capacity = 0.75;
-
-    //     let counter = 0
-
-    //     for(let i = 0; i < this.buckets.length; i++) {
-    //         if (this.buckets[i] !== null | ' ' | undefined) {
-    //             counter++
-    //         }
-    //     }
-
-    //     if(counter >= size*capacity) {
-    //         size *= 2;
-    //     }
-    // }
 
     set (key, value) {
+        this.numIntems++;
+        const loadFactor = this.numIntems / this.buckets.length;
+
+        if(loadFactor > 0.75) {
+            this.#growingBuckets();
+        }
 
         let index = this.#hash(key);
 
         if (!this.buckets[index]) {
-            let linkedList = new LinkedList();
-            let pair = [key, linkedList];
-            this.buckets[index] = pair;
-            linkedList.append(value);
+            let pair = [key, value];
+            this.buckets[index] = [pair];
         } else {
-            if (this.buckets[index][0] === key) {
-                this.buckets[index][1].getHead().data = value;
+            if (this.buckets[index][0][0] === key) {
+                this.buckets[index][0][1] = value;
             } else {
-                let pair = [key, value]
-                this.buckets[index][1].append(pair);
+                let pair = [key, value];
+                this.buckets[index].push(pair);
             }
         }
 
-        console.log('buckets',this.buckets)
+    }
+
+    #growingBuckets () {
+        const newSize = this.size*2;
+        const newBuckets = new Array(this.size*2);
+
+        this.buckets.forEach(item => {
+
+            this.buckets = newBuckets;
+
+            if (item) {
+
+                item.forEach(([key, value]) => {
+
+                    let index = this.#hash(key);
+
+                    if (!newBuckets[index]) {
+                        let pair = [key, value];
+                        newBuckets[index] = [pair];
+                    } else {
+                        if (newBuckets[index][0][0] === key) {
+                            newBuckets[index][0][1] = value;
+                        } else {
+                            let pair = [key, value];
+                            newBuckets[index].push(pair);
+                        }
+                    }
+                })
+
+            }
+        })
+        this.size = newSize;
     }
 
     get (key) {
@@ -64,7 +86,7 @@ export default class HashMap {
         if (!this.buckets[index]) {
             return null;
         } else {
-            return this.buckets[index][1].getHead().data;
+            return this.buckets[index].find(value => value[0] === key);
         }
 
     }
@@ -76,20 +98,41 @@ export default class HashMap {
         if(!this.buckets[index]) {
             return false;
         } else {
-            return true
+            const found = this.buckets[index].find(item => item[0] === key);
+            return found !== undefined;
         }
 
     }
 
     remove (key) {
+
         let index = this.#hash(key);
 
         if (!this.buckets[index]) {
+            
             return false;
+
         } else {
-            this.buckets[index] = null;
-            return true
+
+            for(let i = 0; i < this.buckets[index].length; i++) {
+
+                if(this.buckets[index][i][0] === key) {
+
+                    this.buckets[index].splice(i, 1);
+                    this.numIntems--;
+
+                    if (this.buckets[index].length === 0) {
+                        this.buckets[index] = null;
+                    }
+
+                    return true
+                }
+
+            }
+
+            return 'not find';
         }
+
     }
 
     length () {
@@ -97,7 +140,9 @@ export default class HashMap {
 
         for(let i = 0; i < this.buckets.length; i++) {
             if(this.buckets[i]) {
-                amount++;
+                for(let j = 0; j < this.buckets[i].length; j++) {
+                   amount++
+                }
             }
         }
 
@@ -115,10 +160,12 @@ export default class HashMap {
     keys () {
 
         let keys = []
-
+       
         for(let i = 0; i < this.buckets.length; i++) {
             if(this.buckets[i]) {
-                keys.push(this.buckets[i][0]);
+                for(let j = 0; j < this.buckets[i].length; j++) {
+                    keys.push(this.buckets[i][j][0])
+                }
             }
         }
 
@@ -131,7 +178,9 @@ export default class HashMap {
 
         for(let i = 0; i < this.buckets.length; i++) {
             if(this.buckets[i]) {
-                values.push(this.buckets[i][1].getHead().data);
+                for(let j = 0; j < this.buckets[i].length; j++) {
+                    values.push(this.buckets[i][j][1])
+                }
             }
         }
 
@@ -143,16 +192,13 @@ export default class HashMap {
         let entrise = [];
 
         for(let i = 0; i < this.buckets.length; i++) {
-            
             if(this.buckets[i]) {
-                let array = [];
-                array.push(this.buckets[i][0])
-                array.push(this.buckets[i][1].getHead().data)
-                entrise.push(array);
+                for(let j = 0; j < this.buckets[i].length; j++) {
+                    entrise.push(this.buckets[i][j])
+                }
             }
         }
 
         return entrise;
     } 
-
 }
